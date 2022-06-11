@@ -31,30 +31,30 @@ class HotelController extends Controller
      * @param HotelRequest $hotelRequest
      * @return JsonResponse
      */
-    public function store(HotelRequest $hotelRequest): JsonResponse
+    public function store(): JsonResponse
     {
-        Hotel::create($hotelRequest);
-//        $hotels = json_decode(file_get_contents(storage_path() . '/app/public/hotels.json'), true);
-//        $users = User::all();
-//        $i =0;
-//        foreach ($users as $user){
-//            $image = json_encode($hotels[$i]['images']);
-//            Hotel::create([
-//                'user_id' => $user->id,
-//                'region' => $hotels[$i]['viloyat'],
-//                'phoneNumber' => $hotels[$i]['tel'],
-//                'county' => $hotels[$i]['tuman'],
-//                'venueAddress' => $hotels[$i]['manzil'],
-//                'name' => $hotels[$i]['name'],
-//                'type' => $hotels[$i]['type'],
-//                'roomCount' => $hotels[$i]['koyka'],
-//                'email' => $hotels[$i]['email'],
-//                'amount' => $hotels[$i]['amount'],
-//                'images' => $hotels[$i]['images']
-//            ]);
-//            $i++;
-//        }
-//        $hotels = Hotel::all();
+//        Hotel::create($hotelRequest);
+        $hotels = json_decode(file_get_contents(storage_path() . '/app/public/hotels.json'), true);
+        $users = User::all();
+        $i =0;
+        foreach ($users as $user){
+            $image = json_encode($hotels[$i]['images']);
+            Hotel::create([
+                'user_id' => $user->id,
+                'region' => $hotels[$i]['viloyat'],
+                'phoneNumber' => $hotels[$i]['tel'],
+                'county' => $hotels[$i]['tuman'],
+                'venueAddress' => $hotels[$i]['manzil'],
+                'name' => $hotels[$i]['name'],
+                'type' => $hotels[$i]['type'],
+                'roomCount' => $hotels[$i]['koyka'],
+                'email' => $hotels[$i]['email'],
+                'amount' => $hotels[$i]['amount'],
+                'images' => $hotels[$i]['images']
+            ]);
+            $i++;
+        }
+        $hotels = Hotel::all();
         return response()->json([
             'success' => true,
             'message' => 'Hotel create success fully'
